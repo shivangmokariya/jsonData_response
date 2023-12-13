@@ -7,7 +7,6 @@ const PORT = 3000;
 // Define a simple model
 const Item = mongoose.model('Item', { name: String });
 
-// Middleware for parsing JSON
 app.use(bodyParser.json());
 
 
@@ -96,7 +95,6 @@ app.get('/items', async (req, res) => {
     const resultArray = mergeArrays(productsArray, pricingArray, categoriesArray);
     console.log(resultArray);
 
-    // Send the organized result as a response
     res.status(200).json(resultArray);
   } catch (error) {
     console.error('Error processing request:', error.message);
@@ -105,7 +103,6 @@ app.get('/items', async (req, res) => {
 });
 
 function mergeArrays(products, pricing, categories) {
-  // Your existing merging logic
   const mergedArray = products.map(product => {
     const pricingInfo = pricing.find(item => item.sku === product.sku);
     const categoryInfo = categories.find(cat => cat.id === product.category);
